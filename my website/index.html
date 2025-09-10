@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+</head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 头部样式 */
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* 导航样式 */
+nav {
+    background-color: #2c3e50;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #3498db;
+}
+
+/* 主要内容区域 */
+main {
+    padding: 2rem 0;
+}
+
+
+.hero {
+    background: url;
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.cta-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+}
+
+/* 车辆展示区域 */
+.cars-section {
+    padding: 3rem 0;
+    background-color: white;
+}
+
+.cars-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #e9f7fe;
+}
+
+.car-images {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+figure {
+    width: 350px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+figure:hover {
+    transform: translateY(-5px);
+}
+
+figure img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+figcaption {
+    padding: 10px;
+    text-align: center;
+    background-color: #f2f2f2;
+    font-style: italic;
+}
+
+/* 车辆详情区域 */
+.details-section {
+    padding: 3rem 0;
+    background-color: #ecf0f1;
+}
+
+.details-section h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+article {
+    background: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+article h3 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+/* 侧边栏 */
+.sidebar {
+    padding: 3rem 0;
+    background-color: white;
+}
+
+.sidebar h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+.guide-tips {
+    background-color: #e9f7fe;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.guide-tips h4 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.guide-tips ul {
+    list-style-position: inside;
+    padding-left: 1rem;
+}
+
+.guide-tips li {
+    margin-bottom: 0.5rem;
+}
+
+.audio-section, .video-section {
+    margin-bottom: 2rem;
+}
+
+.audio-section h4, .video-section h4 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+audio, video {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+}
+
+/* 表单样式 */
+.contact-form, .sell-form {
+    padding: 3rem 0;
+    background-color: #ecf0f1;
+}
+
+.contact-form h2, .sell-form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #2c3e50;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+input, textarea, datalist {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+button[type="submit"] {
+    background-color: #e74c3c;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+/* 页脚样式 */
+footer {
+    background-color: #2c3e50;
+    color: white;
+    padding: 2rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
+.contact-info, .footer-links, .business-hours {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 1.5rem;
+}
+
+.footer-links h3, .contact-info h3, .business-hours h3 {
+    margin-bottom: 1rem;
+    color: #3498db;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover {
+    color: #3498db;
+}
+
+.contact-info a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #3498db;
+}
+
+.copyright {
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid #34495e;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    nav ul li {
+        margin: 5px 0;
+    }
+    
+    .car-images {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-content {
+        flex-direction: column;
+    }
+    
+    table {
+        display: block;
+        overflow-x: auto;
+    }
+}
+</style>
+<body>
+     <header>
+        <div class="container">
+            <h1>AUTOMOBILE</h1>
+            <p>Used car trading platform</p>
+        </div>
+    </header>
+
+    <!-- 导航菜单 -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#cars">Show</a></li>
+                <li><a href="#sell">Buy</a></li>
+                <li><a href="#guide">Car Buying Guide</a></li>
+                <li><a href="#about">About us</a></li>
+                <li><a href="#contact">Contact us</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主要内容区域 -->
+    <main>
+       
+        <section id="home" class="hero">
+            <div class="container">
+                <h2>Find your vehicle</h2>
+                <p>We offer high-quality second-hand cars that have undergone strict inspection, allowing you to buy with confidence and use with peace of mind</p>
+                <button onclick="location.href='#cars'" class="cta-button">Browse vehicles</button>
+            </div>
+        </section>
+
+        <!-- 二手车信息表格部分 -->
+        <section id="cars" class="cars-section">
+            <div class="container">
+                <h2>Second-hand car screening</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>vehicle model</th>
+                            <th>a particular year</th>
+                            <th>mileage</th>
+                            <th>Price</th>
+                            <th>speed changing box</th>
+                            <th>location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Toyota Camry</td>
+                            <td>2019</td>
+                            <td>45,000</td>
+                            <td>15.8</td>
+                            <td>AT</td>
+                            <td>Beijing</td>
+                        </tr>
+                        <tr>
+                            <td>Honda Accord</td>
+                            <td>2018</td>
+                            <td>60,000</td>
+                            <td>14.2</td>
+                            <td>AT</td>
+                            <td>Shanghai</td>
+                        </tr>
+                        <tr>
+                            <td>Volkswagen Passat</td>
+                            <td>2020</td>
+                            <td>35,000</td>
+                            <td>16.5</td>
+                            <td>AT</td>
+                            <td>Beijing</td>
+                        </tr>
+                        <tr>
+                            <td>Audi A4L</td>
+                            <td>2019</td>
+                            <td>50,000</td>
+                            <td>22.8</td>
+                            <td>AT</td>
+                            <td>Beijing</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="car-images">
+                    <figure>
+                        <img src="images/2019-toyota-camry.jpg" alt="2019 Toyota Camry">
+                        <figcaption>2019 Toyota Camry - only 45,000 kilometers driven</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="images/2018 Honda Accord.jpg" alt="2018 Honda Accord">
+                        <figcaption>2018 Honda Accord - Affordable price and in good condition</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 车辆详情文章区域 -->
+        <section id="about" class="details-section">
+            <div class="container">
+                <h2>Vehicle details</h2>
+                <article>
+                    <h3>2019 Toyota Camry 2.5G Luxury Edition</h3>
+                    <p>This 2019 Toyota Camry is a selected vehicle on our platform. It has undergone 128 professional tests to ensure there are no major accidents, no fires, and no water damage. The vehicle is well maintained and the interior is as good as new.</p>
+                    <p>Main configurations: 2.5L naturally aspirated engine, 8-speed automatic transmission, panoramic sunroof, leather seats, heated seats, keyless entry, push-button start, rearview camera, etc.</p>
+                    <details>
+                        <summary>View the complete test report</summary>
+                        <p>Engine inspection: Normal; Transmission inspection: Normal; Chassis inspection: normal; Body structure: No damage; Electronic equipment: All working properly</p>
+                        <p>Last maintenance: June 2023. Next maintenance recommendation: December 2023 or after driving 50,000 kilometers</p>
+                    </details>
+                </article>
+
+                <article>
+                    <h3>2018 Honda Accord 260TURBO Elite Edition</h3>
+                    <p>A Honda Accord has been driven for 60,000 kilometers, with full maintenance and complete records. The car owner takes great care of the vehicle and maintains it very well both inside and out.</p>
+                    <p>Main configurations: 1.5T turbocharged engine, CVT continuously variable transmission, LED headlights, electric sunroof, multi-functional steering wheel, central control large screen, reversing radar, etc.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- 侧边栏区域 -->
+        <aside class="sidebar">
+            <div class="container">
+                <h3>Car Buying Guide</h3>
+                <div class="guide-tips">
+                    <h4>Precautions for purchasing a second-hand car</h4>
+                    <ul>
+                        <li>Check the vehicle's history and maintenance status</li>
+                        <li>Verify the vehicle identification code (VIN)</li>
+                        <li>Have a comprehensive test drive experience</li>
+                        <li>Check the vehicle body for any repair marks</li>
+                        <li>Understand the market price to avoid overbidding</li>
+                    </ul>
+                </div>
+
+                <!-- 音频元素 -->
+                <div class="audio-section">
+                    <h4>Listen to the sound of the engine</h4>
+                    <audio controls>
+                        <source src="#" type="audio/mpeg">
+                        Your browser does not support audio elements
+                    </audio>
+                    <p>A good engine should run smoothly without any abnormal noise.</p>
+                </div>
+
+                <!-- 视频元素 -->
+                <div class="video-section">
+                    <h4>Vehicle test drive video</h4>
+                    <video controls>
+                        <source src="#" type="video/mp4">
+                       Your browser does not support video elements.
+                    </video>
+                    <p>Watching actual driving videos can help you understand the vehicle's performance.</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 咨询表单部分 -->
+        <section id="contact" class="contact-form">
+            <div class="container">
+                <h2>Vehicle consultation</h2>
+                <form id="carForm">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                    
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    
+                    <label for="password">Create a query password:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <label for="car-type">The car models of interest:</label>
+                    <input list="car-types" id="car-type" name="car-type">
+                    <datalist id="car-types">
+                        <option value="Toyota">
+                        <option value="Honda">
+                        <option value="Volkswagen">
+                        <option value="Audi">
+                        <option value="Audi">
+                        <option value="Benz">
+                    </datalist>
+                    
+                    <label for="message">Consultation content:</label>
+                    <textarea id="message" name="message" rows="4"></textarea>
+                    
+                    <button type="submit">Submit consultation</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- 卖车表单部分 -->
+        <section id="sell" class="sell-form">
+            <div class="container">
+                <h2>sell car</h2>
+                <form id="sellForm">
+                    <label for="car-model">vehicle model:</label>
+                    <input type="text" id="car-model" name="car-model" required>
+                    
+                    <label for="car-year">a particular year:</label>
+                    <input type="number" id="car-year" name="car-year" min="1990" max="2023" required>
+                    
+                    <label for="car-mileage">Mileage（km）:</label>
+                    <input type="number" id="car-mileage" name="car-mileage" required>
+                    
+                    <label for="seller-phone">PHONE:</label>
+                    <input type="tel" id="seller-phone" name="seller-phone" required>
+                    
+                    <label for="car-location">location:</label>
+                    <input list="locations" id="car-location" name="car-location">
+                    <datalist id="locations">
+                        <option value="Beijing">
+                        <option value="Shanghai">
+                        <option value="Nanjing">
+            
+                    </datalist>
+                    
+                    <button type="submit">Submit vehicle information</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- 页脚区域 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="contact-info">
+                    <h3>contact us</h3>
+                    <p>Address：111</p>
+                    <p>Phone：<a href="tel:+111111">+1111111</a></p>
+                    <p>MailAddress：<a href="mailto:111@111.com">111@111.com</a></p>
+                </div>
+                <div class="footer-links">
+                    <h3>link</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#cars">Show</a></li>
+                        <li><a href="#sell">Sell cars</a></li>
+                        <li><a href="#guide">Car Buying Guide</a></li>
+                    </ul>
+                </div>
+                <div class="business-hours">
+                    <h3>opening hours</h3>
+                    <p> 9:00 - 18:00</p>
+                
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; Yunqi Zhang</p>
+            </div>
+        </div>
+    </footer>
+
+    
+</html>
