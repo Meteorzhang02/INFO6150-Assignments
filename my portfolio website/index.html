@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal portfolio website</title>
+    <title>Document</title>
     <style>
         /* 基础样式重置 */
         * {
@@ -11,29 +11,611 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
         }
-        body{
+        
+        body {
             line-height: 1.6;
             color: #333;
             background-color: #f5f5f5;
         }
-        a{
+        
+        a {
             text-decoration: none;
             color: #0077b5;
-
         }
+        
+        /* 布局样式 */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
         /* 头部样式 */
-        header{
+        header {
             background-color: #fff;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             position: sticky;
             top: 0;
             z-index: 100;
         }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #0077b5;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #0077b5;
+        }
+        
+        /* 英雄区域 */
+        .hero {
+            background: linear-gradient(135deg, #0077b5 0%, #004471 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #fff;
+            color: #0077b5;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background: #f0f0f0;
+            transform: translateY(-2px);
+        }
+        
+        /* 主要内容区域 */
+        main {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem auto;
+        }
+        
+        /* 文章区域 */
+        article {
+            flex: 2;
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        h2 {
+            color: #0077b5;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+        }
+        
+        table th, table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        /* 使用CSS选择器样式化表格 */
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        table tr:hover {
+            background-color: #f0f8ff;
+        }
+        
+        table th {
+            background-color: #0077b5;
+            color: white;
+        }
+        
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        input, textarea, select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        button {
+            background: #0077b5;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        
+        button:hover {
+            background: #005a8c;
+        }
+        
+        /* 推荐语部分 */
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .testimonial {
+            flex: 1 1 calc(50% - 1.5rem);
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .testimonial:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .testimonial-content {
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #0077b5;
+            margin-right: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        /* 图片画廊 */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .gallery-item {
+            flex: 1 1 calc(33.333% - 1rem);
+            height: 200px;
+            overflow: hidden;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .gallery-item:hover .gallery-img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 119, 181, 0.8);
+            color: white;
+            padding: 0.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+        
+        /* 侧边栏 */
+        aside {
+            flex: 1;
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            align-self: flex-start;
+        }
+        
+        .skills-list {
+            list-style: none;
+        }
+        
+        .skills-list li {
+            margin-bottom: 0.8rem;
+            padding: 0.5rem;
+            background: #f0f8ff;
+            border-radius: 4px;
+        }
+        
+        /* 页脚 */
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            main {
+                flex-direction: column;
+            }
+            
+            .testimonial {
+                flex: 1 1 100%;
+            }
+            
+            .gallery-item {
+                flex: 1 1 calc(50% - 1rem);
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 375px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .gallery-item {
+                flex: 1 1 100%;
+            }
+            
+            .hero {
+                padding: 2rem 0;
+            }
+        }
+        
+        /* 移动菜单按钮 */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #333;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+                display: none;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+            }
+        }
     </style>
 </head>
 <body>
-    
+     <!-- 头部 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">John Doe</div>
+                <ul class="nav-links">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn">☰</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>John Doe</h1>
+                <p>Full Stack Developer & UI/UX Designer</p>
+                <p>Building digital solutions that make a difference</p>
+                <a href="#contact" class="btn">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <main>
+            <!-- 文章区域 -->
+            <article>
+                <!-- 关于我部分 -->
+                <section id="about">
+                    <h2>About Me</h2>
+                    <p>Hello! I'm John, a passionate full-stack developer with over 5 years of experience building web applications. I specialize in JavaScript technologies including React, Node.js, and Express.</p>
+                    <p>My approach combines technical expertise with an eye for design to create applications that are both functional and visually appealing.</p>
+                </section>
+
+                <!-- 经验部分 -->
+                <section id="experience">
+                    <h2>Work Experience</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Company</th>
+                                <th>Position</th>
+                                <th>Duration</th>
+                                <th>Responsibilities</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Tech Solutions Inc.</td>
+                                <td>Senior Developer</td>
+                                <td>2020 - Present</td>
+                                <td>Lead development team, architect solutions, mentor junior developers</td>
+                            </tr>
+                            <tr>
+                                <td>Web Innovations LLC</td>
+                                <td>Frontend Developer</td>
+                                <td>2018 - 2020</td>
+                                <td>Developed responsive UIs, implemented design systems, optimized performance</td>
+                            </tr>
+                            <tr>
+                                <td>StartUp Ventures</td>
+                                <td>Full Stack Intern</td>
+                                <td>2017 - 2018</td>
+                                <td>Assisted in full-stack development, fixed bugs, implemented new features</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <!-- 项目部分 -->
+                <section id="projects">
+                    <h2>Projects</h2>
+                    <div class="project">
+                        <h3>E-commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with React frontend, Node.js backend, and MongoDB database. Implemented user authentication, payment processing, and admin dashboard.</p>
+                    </div>
+                    <div class="project">
+                        <h3>Task Management App</h3>
+                        <p>A collaborative task management application with real-time updates using WebSockets. Features include drag-and-drop interface, team collaboration, and progress tracking.</p>
+                    </div>
+                </section>
+
+                <!-- 推荐语部分 -->
+                <section id="testimonials">
+                    <h2>Testimonials</h2>
+                    <div class="testimonials">
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                "John is an exceptional developer who consistently delivers high-quality work. His attention to detail and problem-solving skills are impressive."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">SM</div>
+                                <div>
+                                    <strong>Sarah Mitchell</strong>
+                                    <p>Project Manager, Tech Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="testimonial">
+                            <div class="testimonial-content">
+                                "Working with John was a great experience. He transformed our complex requirements into an elegant solution that exceeded our expectations."
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="author-avatar">DJ</div>
+                                <div>
+                                    <strong>David Johnson</strong>
+                                    <p>CEO, Startup Ventures</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 图片画廊 -->
+                <section id="gallery">
+                    <h2>Project Gallery</h2>
+                    <div class="gallery">
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400/0077b5/ffffff?text=Project+1" alt="Project 1" class="gallery-img">
+                            <div class="gallery-caption">E-commerce Platform</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400/005a8c/ffffff?text=Project+2" alt="Project 2" class="gallery-img">
+                            <div class="gallery-caption">Task Management App</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://via.placeholder.com/600x400/003d5b/ffffff?text=Project+3" alt="Project 3" class="gallery-img">
+                            <div class="gallery-caption">Portfolio Website</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 联系表单 -->
+                <section id="contact">
+                    <h2>Contact Me</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                </section>
+            </article>
+
+            <!-- 侧边栏 -->
+            <aside>
+                <h2>Skills</h2>
+                <ul class="skills-list">
+                    <li>HTML5 & CSS3</li>
+                    <li>JavaScript & TypeScript</li>
+                    <li>React & Redux</li>
+                    <li>Node.js & Express</li>
+                    <li>MongoDB & MySQL</li>
+                    <li>Git & GitHub</li>
+                    <li>UI/UX Design</li>
+                    <li>Responsive Design</li>
+                </ul>
+
+                <h2>Education</h2>
+                <p><strong>BS in Computer Science</strong><br>
+                Northeastern University<br>
+                2013 - 2017</p>
+
+                <h2>Certifications</h2>
+                <p>AWS Certified Developer<br>
+                Google UX Design Certificate</p>
+            </aside>
+        </main>
+    </div>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 John Doe. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 移动菜单切换
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+    </script>
 </body>
+
 </html>
