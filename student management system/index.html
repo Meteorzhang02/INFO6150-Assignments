@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Management System</h1>
+            <div id="student-info">
+                <p><strong>Full Name:</strong>Yunqi Zhang</p>
+                <p><strong>NUID:</strong>003150507</p>
+            </div>
+        </header>
+
+        <main>
+            <table id="students-table">
+                <caption>Student Awards Information</caption>
+                <thead>
+                    <tr>
+                        <th></th> <!-- For expand/collapse arrows -->
+                        <th>STUDENT</th>
+                        <th>ADVISOR</th>
+                        <th>AWARD STATUS</th>
+                        <th>SEMESTER</th>
+                        <th>TYPE</th>
+                        <th>BUDGET #</th>
+                        <th>PERCENTAGE</th>
+                        <th>DELETE</th>
+                        <th>EDIT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Initial rows will be populated by JavaScript -->
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="10">
+                            <button id="submit-btn" disabled>SUBMIT SELECTED AWARDS</button>
+                            <button id="add-student-btn">Add New Student</button>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </main>
+
+        <!-- Modal for messages -->
+        <div id="message-modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="message-text"></p>
+            </div>
+        </div>
+
+        <!-- Modal for editing -->
+        <div id="edit-modal" class="modal">
+            <div class="modal-content">
+                <h3 id="edit-title"></h3>
+                <input type="text" id="edit-input" placeholder="Enter new value">
+                <div class="modal-buttons">
+                    <button id="edit-ok">OK</button>
+                    <button id="edit-cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
