@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    
+    label {
+      float: left;
+      width: 150px;
+    }
+    
+    #container {
+      width: 700px;
+      margin: auto;
+      background-color: beige;
+      padding: 20px;
+      border-radius: 5px;
+    }
+    
+    main {
+      padding: 20px;
+    }
+    
+    .error {
+      color: red;
+      font-size: 12px;
+      margin-left: 150px;
+      display: block;
+      margin-top: 5px;
+    }
+    
+    input:invalid, textarea:invalid, select:invalid {
+      border: 1px solid red;
+    }
+    
+    input:valid, textarea:valid, select:valid {
+      border: 1px solid green;
+    }
+    
+    #submitBtn:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    
+    .char-counter {
+      font-size: 12px;
+      color: #666;
+      margin-left: 150px;
+      margin-top: 5px;
+    }
+    
+    #chatWindow {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      height: 400px;
+      background-color: white;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: none;
+      flex-direction: column;
+    }
+    
+    #chatHeader {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    #chatMessages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+    }
+    
+    #chatInputContainer {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+    
+    #chatInput {
+      flex-grow: 1;
+      padding: 5px;
+    }
+    
+    #chatSend {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    
+    #aiAssistantBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    
+    #resultsTable {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    
+    #resultsTable th, #resultsTable td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    
+    #resultsTable th {
+      background-color: #f2f2f2;
+    }
+    
+    .hidden {
+      display: none;
+    }
+  </style>
+ </head>
+ <body>
+  <div id="container">
+    <button id="aiAssistantBtn">AI Assistant</button>
+    
+    <main>
+      <h2>Feedback</h2>
+      <h3>Love something? Hate something? Let us know!</h3>
+      Note: Fields marked with an asterisk(*) are mandatory
+      <br><br>
+      
+      <form id="feedbackForm" method="post" novalidate>
+        <div>
+          <label>Title*:</label>
+          <input type="radio" name="title" id="miss" value="miss" required="required"/>Miss
+          <input type="radio" name="title" id="mr" value="mr" required="required"/>Mr.
+          <input type="radio" name="title" id="mrs" value="mrs" required="required"/>Mrs.
+          <span id="titleError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="firstName">First Name*:</label>
+          <input type="text" name="firstName" id="firstName" placeholder="First Name" />	
+          <span id="firstNameError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="lastName">Last Name*:</label>
+          <input type="text" name="lastName" id="lastName" placeholder="Last Name" />
+          <span id="lastNameError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="emailId">Email Id*:</label>
+          <input type="text" name="emailId" id="emailId" placeholder="yourname@northeastern.edu" />
+          <span id="emailIdError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="phoneNumber">Phone Number*:</label>
+          <input type="text" name="phoneNumber" id="phoneNumber" placeholder="(XXX) XXX-XXXX" />
+          <span id="phoneNumberError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="streetAddress1">Street Address 1*:</label>
+          <input type="text" name="streetAddress1" id="streetAddress1" placeholder="Street Address 1" />
+          <span id="streetAddress1Error" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="streetAddress2">Street Address 2:</label>
+          <input type="text" name="streetAddress2" id="streetAddress2" placeholder="Street Address 2" />
+          <span id="streetAddress2Counter" class="char-counter">0/50 characters</span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="zipcode">ZipCode*:</label>
+          <input type="text" name="zipcode" id="zipcode" placeholder="XXXXX" />
+          <span id="zipcodeError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="drinkSelect">Select Drink*:</label>
+          <select name="drinkSelect" id="drinkSelect">
+            <option value="">-- Select a drink --</option>
+            <option value="Hot Black Tea - Keemun">Hot Black Tea - Keemun</option>
+            <option value="Iced Coffee - Colombian">Iced Coffee - Colombian</option>
+            <option value="Green Tea - Jasmine">Green Tea - Jasmine</option>
+            <option value="Cappuccino - Italian">Cappuccino - Italian</option>
+            <option value="Hot Chocolate - Belgian">Hot Chocolate - Belgian</option>
+          </select>
+          <span id="drinkSelectError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div id="drinkOptionContainer"></div>
+        
+        <div>
+          <label for="source">How did you hear*:</label>
+          <input type='checkbox' name="source" value="facebook" /> Facebook
+          <input type='checkbox' name="source" value="google" /> Google
+          <input type='checkbox' name="source" value="yelp" /> Yelp 
+          <span id="sourceError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <div>
+          <label for="comments">Comments*:</label>
+          <textarea name="comments" id="comments" placeholder="Your comments" rows="5" cols="25"></textarea>
+          <span id="commentsError" class="error"></span>
+        </div>
+        <br><br>
+        
+        <input type="button" id="submitBtn" value="Submit" disabled>
+        <input type="reset" value="Reset">
+        <br><br>
+      </form>
+      
+      <div id="resultsContainer" class="hidden">
+        <h3>Submission Results</h3>
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Address 1</th>
+              <th>Address 2</th>
+              <th>Zip Code</th>
+              <th>Drink</th>
+              <th>Drink Option</th>
+              <th>Source</th>
+              <th>Comments</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody">
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  
+  <div id="chatWindow">
+    <div id="chatHeader">
+      <span>AI Assistant</span>
+      <button id="closeChat">X</button>
+    </div>
+    <div id="chatMessages">
+      <div class="message bot-message">Hello! I'm here to help with any questions about the form.</div>
+    </div>
+    <div id="chatInputContainer">
+      <input type="text" id="chatInput" placeholder="Ask a question...">
+      <button id="chatSend">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Data storage for form submissions
+    let formSubmissions = [];
+    
+    // Validation patterns
+    const patterns = {
+      phone: /^\(\d{3}\) \d{3}-\d{4}$/,
+      email: /^[a-zA-Z0-9._%+-]+@northeastern\.edu$/,
+      zipcode: /^\d{5}$/,
+      alphanumeric: /^[a-zA-Z0-9\s]*$/,
+      firstName: /^[a-zA-Z\s]{2,30}$/,
+      lastName: /^[a-zA-Z\s]{2,30}$/,
+      streetAddress1: /^.{5,100}$/
+    };
+    
+    // Minimum and maximum lengths
+    const constraints = {
+      firstName: { min: 2, max: 30 },
+      lastName: { min: 2, max: 30 },
+      streetAddress1: { min: 5, max: 100 },
+      streetAddress2: { max: 50 },
+      comments: { min: 10, max: 500 }
+    };
+    
+    // FAQ data for AI assistant
+    const faqData = [
+      {
+        keywords: ["email", "northeastern"],
+        question: "What email can I use?",
+        answer: "You must use your Northeastern email address with @northeastern.edu domain (example: student@northeastern.edu). Other email domains are not accepted."
+      },
+      {
+        keywords: ["phone", "number", "format"],
+        question: "What format should the phone number be?",
+        answer: "The phone number must be in the format (XXX) XXX-XXXX. The input will be automatically formatted as you type."
+      },
+      {
+        keywords: ["zip", "code", "digits"],
+        question: "How many digits should the zip code have?",
+        answer: "The zip code must be exactly 5 digits."
+      },
+      {
+        keywords: ["required", "mandatory", "fields"],
+        question: "Which fields are required?",
+        answer: "All fields are required except Street Address 2."
+      },
+      {
+        keywords: ["address", "street", "optional"],
+        question: "Is Street Address 2 mandatory?",
+        answer: "No, it is optional. If left blank, it will remain empty in the results table."
+      }
+    ];
+    
+    // DOM elements
+    const form = document.getElementById('feedbackForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const resultsBody = document.getElementById('resultsBody');
+    const drinkSelect = document.getElementById('drinkSelect');
+    const drinkOptionContainer = document.getElementById('drinkOptionContainer');
+    const streetAddress2 = document.getElementById('streetAddress2');
+    const streetAddress2Counter = document.getElementById('streetAddress2Counter');
+    const aiAssistantBtn = document.getElementById('aiAssistantBtn');
+    const chatWindow = document.getElementById('chatWindow');
+    const closeChat = document.getElementById('closeChat');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSend = document.getElementById('chatSend');
+    
+    // Initialize form validation
+    function initFormValidation() {
+      // Add event listeners to all form fields
+      const formFields = form.querySelectorAll('input, textarea, select');
+      formFields.forEach(field => {
+        if (field.type !== 'radio' && field.type !== 'checkbox') {
+          field.addEventListener('input', validateField);
+          field.addEventListener('blur', validateField);
+        } else if (field.type === 'radio' || field.type === 'checkbox') {
+          field.addEventListener('change', validateField);
+        }
+      });
+      
+      // Special handling for phone number input masking
+      const phoneInput = document.getElementById('phoneNumber');
+      phoneInput.addEventListener('input', formatPhoneNumber);
+      
+      // Character counter for Street Address 2
+      streetAddress2.addEventListener('input', updateCharacterCounter);
+      
+      // Drink selection change handler
+      drinkSelect.addEventListener('change', handleDrinkSelection);
+      
+      // Form submission
+      submitBtn.addEventListener('click', handleFormSubmit);
+      
+      // AI Assistant functionality
+      aiAssistantBtn.addEventListener('click', toggleChatWindow);
+      closeChat.addEventListener('click', toggleChatWindow);
+      chatSend.addEventListener('click', handleChatSend);
+      chatInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          handleChatSend();
+        }
+      });
+    }
+    
+    // Format phone number with input masking
+    function formatPhoneNumber(e) {
+      let input = e.target.value.replace(/\D/g, '');
+      let formatted = '';
+      
+      if (input.length > 0) {
+        formatted = '(' + input.substring(0, 3);
+      }
+      
+      if (input.length >= 4) {
+        formatted += ') ' + input.substring(3, 6);
+      }
+      
+      if (input.length >= 7) {
+        formatted += '-' + input.substring(6, 10);
+      }
+      
+      e.target.value = formatted;
+      validateField(e);
+    }
+    
+    // Update character counter for Street Address 2
+    function updateCharacterCounter() {
+      const count = streetAddress2.value.length;
+      const max = constraints.streetAddress2.max;
+      streetAddress2Counter.textContent = `${count}/${max} characters`;
+      
+      if (count > max) {
+        streetAddress2Counter.style.color = 'red';
+      } else {
+        streetAddress2Counter.style.color = '#666';
+      }
+    }
+    
+    // Validate a single form field
+    function validateField(e) {
+      const field = e.target;
+      const fieldName = field.name || field.id;
+      const value = field.value;
+      const errorElement = document.getElementById(fieldName + 'Error');
+      
+      let isValid = true;
+      let errorMessage = '';
+      
+      // Check if field is required
+      if (field.hasAttribute('required') && !value.trim()) {
+        isValid = false;
+        errorMessage = 'This field is required';
+      } else if (value.trim()) {
+        // Validate based on field type
+        switch (fieldName) {
+          case 'firstName':
+          case 'lastName':
+            if (!patterns.alphanumeric.test(value)) {
+              isValid = false;
+              errorMessage = 'Only alphanumeric characters are allowed';
+            } else if (value.length < constraints[fieldName].min) {
+              isValid = false;
+              errorMessage = `Minimum ${constraints[fieldName].min} characters required`;
+            } else if (value.length > constraints[fieldName].max) {
+              isValid = false;
+              errorMessage = `Maximum ${constraints[fieldName].max} characters allowed`;
+            }
+            break;
+            
+          case 'emailId':
+            if (!patterns.email.test(value)) {
+              isValid = false;
+              errorMessage = 'Please enter a valid @northeastern.edu email address';
+            }
+            break;
+            
+          case 'phoneNumber':
+            if (!patterns.phone.test(value)) {
+              isValid = false;
+              errorMessage = 'Phone number must be in format (XXX) XXX-XXXX';
+            }
+            break;
+            
+          case 'streetAddress1':
+            if (!patterns.streetAddress1.test(value)) {
+              isValid = false;
+              errorMessage = `Address must be between ${constraints.streetAddress1.min} and ${constraints.streetAddress1.max} characters`;
+            }
+            break;
+            
+          case 'streetAddress2':
+            if (value.length > constraints.streetAddress2.max) {
+              isValid = false;
+              errorMessage = `Maximum ${constraints.streetAddress2.max} characters allowed`;
+            }
+            break;
+            
+          case 'zipcode':
+            if (!patterns.zipcode.test(value)) {
+              isValid = false;
+              errorMessage = 'Zip code must be exactly 5 digits';
+            }
+            break;
+            
+          case 'comments':
+            if (value.length < constraints.comments.min) {
+              isValid = false;
+              errorMessage = `Minimum ${constraints.comments.min} characters required`;
+            } else if (value.length > constraints.comments.max) {
+              isValid = false;
+              errorMessage = `Maximum ${constraints.comments.max} characters allowed`;
+            }
+            break;
+            
+          case 'drinkSelect':
+            if (!value) {
+              isValid = false;
+              errorMessage = 'Please select a drink';
+            }
+            break;
+            
+          case 'title':
+            // For radio buttons, check if any is selected
+            const titleSelected = document.querySelector('input[name="title"]:checked');
+            if (!titleSelected) {
+              isValid = false;
+              errorMessage = 'Please select a title';
+            }
+            break;
+            
+          case 'source':
+            // For checkboxes, check if any is selected
+            const sourceSelected = document.querySelectorAll('input[name="source"]:checked');
+            if (sourceSelected.length === 0) {
+              isValid = false;
+              errorMessage = 'Please select at least one source';
+            }
+            break;
+        }
+      }
+      
+      // Update error message display
+      if (errorElement) {
+        errorElement.textContent = errorMessage;
+        errorElement.style.display = isValid ? 'none' : 'block';
+      }
+      
+      // Update field styling
+      if (isValid && value.trim()) {
+        field.style.borderColor = 'green';
+      } else if (!isValid) {
+        field.style.borderColor = 'red';
+      } else {
+        field.style.borderColor = '';
+      }
+      
+      // Check overall form validity
+      checkFormValidity();
+      
+      return isValid;
+    }
+    
+    // Check if entire form is valid
+    function checkFormValidity() {
+      const requiredFields = form.querySelectorAll('[required]');
+      let allValid = true;
+      
+      requiredFields.forEach(field => {
+        if (field.type === 'radio') {
+          // For radio buttons, check if any in the group is selected
+          const name = field.name;
+          const radioSelected = document.querySelector(`input[name="${name}"]:checked`);
+          if (!radioSelected) {
+            allValid = false;
+          }
+        } else if (field.type === 'checkbox') {
+          // For checkboxes, check if any in the group is selected
+          const name = field.name;
+          const checkboxSelected = document.querySelectorAll(`input[name="${name}"]:checked`);
+          if (checkboxSelected.length === 0) {
+            allValid = false;
+          }
+        } else {
+          // For other fields, check if they have a value
+          if (!field.value.trim()) {
+            allValid = false;
+          }
+        }
+      });
+      
+      // Additionally check custom validations
+      const fieldsToValidate = [
+        'firstName', 'lastName', 'emailId', 'phoneNumber', 
+        'streetAddress1', 'zipcode', 'comments', 'drinkSelect'
+      ];
+      
+      fieldsToValidate.forEach(fieldName => {
+        const field = document.getElementById(fieldName);
+        if (field && !validateField({ target: field })) {
+          allValid = false;
+        }
+      });
+      
+      // Enable/disable submit button
+      submitBtn.disabled = !allValid;
+      
+      return allValid;
+    }
+    
+    // Handle drink selection change
+    function handleDrinkSelection() {
+      const selectedDrink = drinkSelect.value;
+      drinkOptionContainer.innerHTML = '';
+      
+      if (selectedDrink) {
+        const checkboxContainer = document.createElement('div');
+        checkboxContainer.innerHTML = `
+          <input type="checkbox" id="drinkOption" name="drinkOption">
+          <label for="drinkOption">Large drink (75¢ extra)</label>
+        `;
+        
+        const textFieldContainer = document.createElement('div');
+        textFieldContainer.id = 'drinkTextFieldContainer';
+        textFieldContainer.style.display = 'none';
+        textFieldContainer.innerHTML = `
+          <label for="drinkOptionText">Special Instructions:</label>
+          <input type="text" id="drinkOptionText" name="drinkOptionText" placeholder="Enter special instructions">
+          <span id="drinkOptionTextError" class="error"></span>
+        `;
+        
+        drinkOptionContainer.appendChild(checkboxContainer);
+        drinkOptionContainer.appendChild(textFieldContainer);
+        
+        // Add event listener to the checkbox
+        const drinkOptionCheckbox = document.getElementById('drinkOption');
+        drinkOptionCheckbox.addEventListener('change', function() {
+          textFieldContainer.style.display = this.checked ? 'block' : 'none';
+          if (this.checked) {
+            document.getElementById('drinkOptionText').setAttribute('required', 'required');
+          } else {
+            document.getElementById('drinkOptionText').removeAttribute('required');
+          }
+          checkFormValidity();
+        });
+        
+        // Add validation for the text field
+        const drinkOptionText = document.getElementById('drinkOptionText');
+        if (drinkOptionText) {
+          drinkOptionText.addEventListener('input', validateField);
+          drinkOptionText.addEventListener('blur', validateField);
+        }
+      }
+    }
+    
+    // Handle form submission
+    function handleFormSubmit() {
+      if (!checkFormValidity()) {
+        alert('Please fix all validation errors before submitting.');
+        return;
+      }
+      
+      // Collect form data
+      const formData = {
+        title: document.querySelector('input[name="title"]:checked').value,
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        emailId: document.getElementById('emailId').value,
+        phoneNumber: document.getElementById('phoneNumber').value,
+        streetAddress1: document.getElementById('streetAddress1').value,
+        streetAddress2: document.getElementById('streetAddress2').value || '',
+        zipcode: document.getElementById('zipcode').value,
+        drink: document.getElementById('drinkSelect').value,
+        drinkOption: document.getElementById('drinkOption') ? 
+                     (document.getElementById('drinkOption').checked ? 'Yes' : 'No') : 'No',
+        drinkOptionText: document.getElementById('drinkOptionText') ? 
+                        document.getElementById('drinkOptionText').value : '',
+        source: Array.from(document.querySelectorAll('input[name="source"]:checked'))
+                 .map(cb => cb.value).join(', '),
+        comments: document.getElementById('comments').value
+      };
+      
+      // Add to submissions array
+      formSubmissions.push(formData);
+      
+      // Update results table
+      updateResultsTable();
+      
+      // Reset form
+      form.reset();
+      
+      // Hide dynamic elements
+      drinkOptionContainer.innerHTML = '';
+      
+      // Clear all error messages
+      const errorElements = document.querySelectorAll('.error');
+      errorElements.forEach(el => {
+        el.textContent = '';
+        el.style.display = 'none';
+      });
+      
+      // Reset field borders
+      const formFields = form.querySelectorAll('input, textarea, select');
+      formFields.forEach(field => {
+        field.style.borderColor = '';
+      });
+      
+      // Disable submit button
+      submitBtn.disabled = true;
+      
+      // Reset character counter
+      streetAddress2Counter.textContent = '0/50 characters';
+      streetAddress2Counter.style.color = '#666';
+      
+      // Show results container
+      resultsContainer.classList.remove('hidden');
+    }
+    
+    // Update results table with all submissions
+    function updateResultsTable() {
+      resultsBody.innerHTML = '';
+      
+      formSubmissions.forEach(submission => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${submission.title}</td>
+          <td>${submission.firstName}</td>
+          <td>${submission.lastName}</td>
+          <td>${submission.emailId}</td>
+          <td>${submission.phoneNumber}</td>
+          <td>${submission.streetAddress1}</td>
+          <td>${submission.streetAddress2}</td>
+          <td>${submission.zipcode}</td>
+          <td>${submission.drink}</td>
+          <td>${submission.drinkOption}${submission.drinkOptionText ? ': ' + submission.drinkOptionText : ''}</td>
+          <td>${submission.source}</td>
+          <td>${submission.comments}</td>
+        `;
+        resultsBody.appendChild(row);
+      });
+    }
+    
+    // Toggle chat window visibility
+    function toggleChatWindow() {
+      chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+    }
+    
+    // Handle chat message sending
+    function handleChatSend() {
+      const message = chatInput.value.trim();
+      if (!message) return;
+      
+      // Add user message to chat
+      addChatMessage(message, 'user');
+      
+      // Find matching FAQ
+      let response = "Sorry, I don't know that yet. Please check the instructions.";
+      const lowerMessage = message.toLowerCase();
+      
+      for (const faq of faqData) {
+        for (const keyword of faq.keywords) {
+          if (lowerMessage.includes(keyword.toLowerCase())) {
+            response = faq.answer;
+            break;
+          }
+        }
+        if (response !== "Sorry, I don't know that yet. Please check the instructions.") {
+          break;
+        }
+      }
+      
+      // Add bot response to chat
+      setTimeout(() => {
+        addChatMessage(response, 'bot');
+      }, 500);
+      
+      // Clear input
+      chatInput.value = '';
+    }
+    
+    // Add a message to the chat
+    function addChatMessage(message, sender) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${sender}-message`;
+      messageDiv.textContent = message;
+      chatMessages.appendChild(messageDiv);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+    
+    // Initialize the application
+    document.addEventListener('DOMContentLoaded', function() {
+      initFormValidation();
+    });
+  </script>
+ </body>
+</html>
