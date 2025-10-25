@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Stopwatch</title>
+    <link rel="stylesheet" href="stopwatch.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="stopwatch-container">
+        <header class="header">
+            <h1>Event Stopwatch</h1>
+        </header>
+
+        <main class="main-content">
+            <!-- Timer Display -->
+            <div class="timer-section">
+                <div class="timer-display" id="timerDisplay">00:00:00</div>
+            </div>
+
+            <!-- Event Details -->
+            <div class="event-section">
+                <h2>Event Details</h2>
+                <div class="form-group">
+                    <label for="eventDate">Date</label>
+                    <input type="date" id="eventDate">
+                    <div class="error-message" id="dateError"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventName">Event Name</label>
+                    <input type="text" id="eventName" placeholder="What are you timing?">
+                    <div class="error-message" id="eventNameError"></div>
+                </div>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="controls-section">
+                <button id="startBtn" class="btn btn-primary">Start</button>
+                <button id="pauseResumeBtn" class="btn btn-secondary" disabled>Pause</button>
+                <button id="stopSaveBtn" class="btn btn-success" disabled>Stop & Save</button>
+                <button id="resetBtn" class="btn btn-warning">Reset</button>
+            </div>
+
+            <!-- Statistics -->
+            <div class="stats-section">
+                <div class="stat-card">
+                    <h3>Total Sessions</h3>
+                    <span id="totalSessions">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Total Time</h3>
+                    <span id="totalTime">00:00:00</span>
+                </div>
+            </div>
+
+            <!-- Session History -->
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>Session History</h2>
+                    <button id="clearAllBtn" class="btn btn-danger" disabled>Clear All</button>
+                </div>
+                
+                <!-- Filter -->
+                <div class="filter-group">
+                    <label for="filterDate">Filter by Date:</label>
+                    <input type="date" id="filterDate">
+                    <button id="clearFilter" class="btn btn-outline">Clear Filter</button>
+                </div>
+
+                <div id="sessionHistory">
+                    <div class="no-sessions">No sessions recorded yet</div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <h3>Session Saved!</h3>
+            <p>Your timing session has been saved successfully.</p>
+            <button class="btn btn-primary" id="closeModal">OK</button>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-content">
+            <h3>Delete Session</h3>
+            <p>Are you sure you want to delete this session?</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmDelete">Delete</button>
+                <button class="btn btn-outline" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Clear All Confirmation Modal -->
+    <div class="modal" id="clearAllModal">
+        <div class="modal-content">
+            <h3>Clear All Sessions</h3>
+            <p>Are you sure you want to delete all sessions? This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmClearAll">Clear All</button>
+                <button class="btn btn-outline" id="cancelClearAll">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="stopwatch.js"></script>
+</body>
+</html>
