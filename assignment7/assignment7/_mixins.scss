@@ -1,0 +1,55 @@
+// Responsive Breakpoint Mixin
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (min-width: #{$breakpoint-sm}) { @content; }
+  }
+  @if $breakpoint == 'md' {
+    @media (min-width: #{$breakpoint-md}) { @content; }
+  }
+  @if $breakpoint == 'lg' {
+    @media (min-width: #{$breakpoint-lg}) { @content; }
+  }
+  @if $breakpoint == 'xl' {
+    @media (min-width: #{$breakpoint-xl}) { @content; }
+  }
+}
+
+// Flexbox Centering Mixin
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Button Variant Mixin
+@mixin button-variant($background, $color) {
+  background-color: $background;
+  color: $color;
+  border: 1px solid $background;
+  
+  &:hover {
+    background-color: darken($background, 10%);
+    border-color: darken($background, 10%);
+  }
+}
+
+// Text Truncate Mixin
+@mixin text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// Card Style Mixin
+@mixin card-style {
+  background: white;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: $box-shadow-lg;
+  }
+}

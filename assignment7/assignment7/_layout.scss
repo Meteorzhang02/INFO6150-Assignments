@@ -1,0 +1,143 @@
+// Header Navigation
+.header {
+  background-color: white;
+  box-shadow: $box-shadow;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md 0;
+  
+  &-brand h1 {
+    margin: 0;
+    color: $primary-color;
+    font-size: $font-size-xl;
+  }
+  
+  &-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+    li {
+      margin: 0 $spacing-md;
+      
+      a {
+        color: $dark-color;
+        font-weight: 500;
+        
+        &:hover {
+          color: $accent-color;
+        }
+      }
+    }
+    
+    @include respond-to('md') {
+      display: flex;
+    }
+  }
+  
+  &-actions {
+    display: flex;
+    gap: $spacing-sm;
+  }
+}
+
+// Search Section
+.search-section {
+  background: linear-gradient(135deg, $primary-color, $accent-color);
+  color: white;
+  padding: $spacing-xxl 0;
+  text-align: center;
+  
+  h2 {
+    margin-bottom: $spacing-lg;
+    font-size: 2.5rem;
+  }
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  @include respond-to('md') {
+    flex-direction: row;
+    
+    input, select {
+      flex: 1;
+    }
+    
+    button {
+      flex: 0 0 auto;
+    }
+  }
+  
+  input, select {
+    padding: $spacing-md;
+    border: none;
+    border-radius: $border-radius;
+  }
+}
+
+// Footer
+.footer {
+  background-color: $dark-color;
+  color: white;
+  padding: $spacing-xxl 0 $spacing-lg;
+  
+  &-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+    margin-bottom: $spacing-xl;
+    
+    @include respond-to('md') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  &-section {
+    h3, h4 {
+      color: white;
+      margin-bottom: $spacing-md;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      
+      li {
+        margin-bottom: $spacing-sm;
+        
+        a {
+          color: #bbb;
+          
+          &:hover {
+            color: white;
+          }
+        }
+      }
+    }
+    
+    p {
+      color: #bbb;
+      margin-bottom: $spacing-sm;
+    }
+  }
+  
+  &-bottom {
+    text-align: center;
+    padding-top: $spacing-lg;
+    border-top: 1px solid #444;
+    color: #bbb;
+  }
+}

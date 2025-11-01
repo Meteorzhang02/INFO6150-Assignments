@@ -1,0 +1,411 @@
+// Section Title
+.section-title {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: $accent-color;
+    margin: $spacing-md auto 0;
+  }
+}
+
+// Vehicle Grid (CSS Grid)
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-xl;
+  
+  @include respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to('lg') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Vehicle Card
+.vehicle-card {
+  @include card-style;
+  
+  .card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    
+    .price-tag {
+      position: absolute;
+      top: $spacing-md;
+      right: $spacing-md;
+      background-color: $secondary-color;
+      color: white;
+      padding: $spacing-xs $spacing-sm;
+      border-radius: $border-radius;
+      font-weight: bold;
+    }
+    
+    &:hover img {
+      transform: scale(1.05);
+    }
+  }
+  
+  .card-content {
+    padding: $spacing-md;
+    
+    h3 {
+      margin-bottom: $spacing-sm;
+      font-size: $font-size-lg;
+      @include text-truncate;
+    }
+  }
+  
+  .car-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+    font-size: $font-size-sm;
+    color: #666;
+    
+    span {
+      flex: 1;
+      text-align: center;
+      
+      &:not(:last-child) {
+        border-right: 1px solid #eee;
+      }
+    }
+  }
+  
+  .card-actions {
+    display: flex;
+    gap: $spacing-sm;
+    
+    .btn {
+      flex: 1;
+    }
+  }
+}
+
+// Categories Grid
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  
+  @include respond-to('sm') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.category-card {
+  @include card-style;
+  text-align: center;
+  padding: $spacing-lg;
+  
+  img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: $spacing-md;
+  }
+  
+  h3 {
+    margin: 0;
+  }
+}
+
+// Detail Page Grid Layout
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  margin: $spacing-xl 0;
+  
+  @include respond-to('lg') {
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas: 
+      "images info"
+      "specs seller";
+    
+    .image-section {
+      grid-area: images;
+    }
+    
+    .info-section {
+      grid-area: info;
+    }
+    
+    .specs-section {
+      grid-area: specs;
+    }
+    
+    .seller-section {
+      grid-area: seller;
+    }
+  }
+}
+
+// Image Section
+.image-section {
+  .main-image {
+    margin-bottom: $spacing-md;
+    
+    img {
+      width: 100%;
+      border-radius: $border-radius-lg;
+    }
+  }
+  
+  .image-thumbnails {
+    display: flex;
+    gap: $spacing-md;
+    
+    img {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: $border-radius;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}
+
+// Info Section
+.info-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  
+  h1 {
+    margin-bottom: $spacing-md;
+  }
+  
+  .price {
+    font-size: 2rem;
+    color: $secondary-color;
+    font-weight: bold;
+    margin-bottom: $spacing-lg;
+  }
+  
+  .basic-info {
+    margin-bottom: $spacing-lg;
+    
+    .info-item {
+      display: flex;
+      justify-content: space-between;
+      padding: $spacing-sm 0;
+      border-bottom: 1px solid #eee;
+      
+      .label {
+        font-weight: 500;
+      }
+      
+      .value {
+        color: #666;
+      }
+    }
+  }
+  
+  .action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+// Specs Section
+.specs-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  
+  h2 {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  
+  .spec-item {
+    display: flex;
+    justify-content: space-between;
+    padding: $spacing-sm 0;
+    border-bottom: 1px solid #eee;
+    
+    .spec-label {
+      font-weight: 500;
+    }
+    
+    .spec-value {
+      color: #666;
+    }
+  }
+}
+
+// Seller Section
+.seller-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  
+  h2 {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.seller-card {
+  display: flex;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+  
+  .seller-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: $spacing-md;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .seller-info {
+    h3 {
+      margin: 0 0 $spacing-xs;
+    }
+    
+    p {
+      margin: 0 0 $spacing-sm;
+      color: #666;
+      font-size: $font-size-sm;
+    }
+  }
+  
+  .seller-rating {
+    display: flex;
+    align-items: center;
+    
+    .stars {
+      color: $warning-color;
+      margin-right: $spacing-xs;
+    }
+    
+    .rating-text {
+      font-size: $font-size-sm;
+      color: #666;
+    }
+  }
+}
+
+// Description Section
+.description-section {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: $border-radius-lg;
+  box-shadow: $box-shadow;
+  margin-bottom: $spacing-xl;
+  
+  h2 {
+    margin-bottom: $spacing-md;
+  }
+  
+  p {
+    margin-bottom: $spacing-lg;
+    line-height: 1.8;
+  }
+}
+
+.highlight-features {
+  h3 {
+    margin-bottom: $spacing-md;
+  }
+  
+  ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+    
+    @include respond-to('sm') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @include respond-to('md') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    li {
+      margin-bottom: 0;
+      padding: $spacing-sm;
+      background: #f8f9fa;
+      border-radius: $border-radius;
+    }
+  }
+}
+
+// Similar Vehicles
+.similar-vehicles {
+  h2 {
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+  
+  @include respond-to('md') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.similar-card {
+  @include card-style;
+  
+  img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+  
+  .card-content {
+    padding: $spacing-md;
+    
+    h4 {
+      margin-bottom: $spacing-sm;
+      @include text-truncate;
+    }
+    
+    .similar-price {
+      color: $secondary-color;
+      font-weight: bold;
+      font-size: $font-size-lg;
+    }
+  }
+}
